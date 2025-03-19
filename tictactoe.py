@@ -64,25 +64,52 @@ def result(board, action):
     playerCharacter = player(board)
     newBoard = [row[:] for row in board]
     newBoard[i][j] = playerCharacter
-
     return newBoard
-
-
-
-    raise NotImplementedError
 
 
 def winner(board):
     """
     Returns the winner of the game, if there is one.
     """
-    raise NotImplementedError
+    for row in board:
+        if row[0] == row[1] == row[2] and row[0] is not None:  #for 3 row checking
+            return row[0]
+        
+    for col in range(3):
+        if board[0][col] == board[1][col] == board[2][col] and board[0][col] is not None: # for 3 columns checking
+            return board[0][col]
+    
+    if board[0][0] == board[1][1] == board[2][2] and board[0][0] is not None: #for left and right diagonal
+        return board[0][0]
+    if board[0][2] == board[1][1] == board[2][0] and board[0][2] is not None:
+        return board[0][2]
 
+    raise NotImplementedError
 
 def terminal(board):
     """
     Returns True if game is over, False otherwise.
     """
+    for row in board:
+        if row[0] == row[1] == row[2] and row[0] is not None:  #for 3 row checking
+            return True
+        
+    for col in range(3):
+        if board[0][col] == board[1][col] == board[2][col] and board[0][col] is not None: # for 3 columns checking
+            return True
+    
+    if board[0][0] == board[1][1] == board[2][2] and board[0][0] is not None: #for left and right diagonal
+        return True
+    if board[0][2] == board[1][1] == board[2][0] and board[0][2] is not None:
+        return True
+    
+    for row in board:
+        for cell in row:  
+            if cell is None:
+                return False 
+            
+    return True
+
     raise NotImplementedError
 
 

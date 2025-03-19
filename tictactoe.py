@@ -169,7 +169,14 @@ def minimax(board):
                 bestValue = value
                 bestMove = action
         return bestMove
-
+    else:  #min value
+        bestValue = 99
+        for action in actions(board):
+            value = maxValue(result(board, action))
+            if value < bestValue:
+                bestValue = value
+                bestMove = action
+        return bestMove
    
     
     raise NotImplementedError

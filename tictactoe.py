@@ -159,6 +159,17 @@ def minimax(board):
     """
     Returns the optimal action for the current player on the board.
     """
+    playerTurn = player(board)
+
+    if playerTurn == X:  #max value
+        bestValue = -99
+        for action in actions(board):
+            value = minValue(result(board, action))
+            if value > bestValue:
+                bestValue = value
+                bestMove = action
+        return bestMove
+
    
     
     raise NotImplementedError

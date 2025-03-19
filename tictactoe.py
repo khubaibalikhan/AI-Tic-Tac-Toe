@@ -85,6 +85,12 @@ def winner(board):
         return board[0][2]
 
     raise NotImplementedError
+def isGameOver( board):
+    for row in board:
+        for cell in row:  #if game is still not over 
+            if cell is None:
+                return False 
+    return True  
 
 def terminal(board):
     """
@@ -103,10 +109,8 @@ def terminal(board):
     if board[0][2] == board[1][1] == board[2][0] and board[0][2] is not None:
         return True
     
-    for row in board:
-        for cell in row:  
-            if cell is None:
-                return False 
+    if isGameOver(board) == False:
+        return False
             
     return True
 
@@ -117,6 +121,19 @@ def utility(board):
     """
     Returns 1 if X has won the game, -1 if O has won, 0 otherwise.
     """
+
+    if terminal(board):
+        playerWhoWonGame = winner(board)
+        if playerWhoWonGame == "X":
+            return 1
+        elif playerWhoWonGame == "O":
+            return -1
+        else:
+            return 0 
+# If the game has not ended yet, return None
+    return None
+    
+
     raise NotImplementedError
 
 
